@@ -85,3 +85,56 @@ def rebuild(df_collection, dropped_col_list, col_name):
         inc += 1
 
     return df_rebuild
+
+
+def generate_paths(dups, occur):
+    # recieve list of duplicate files
+    # restructure into following format, # of path columns dictated by occur value input
+    # filename - path1 - path2 - path3 - path4...
+    from collections import defaultdict
+    import pandas as pd
+
+    names = []
+    paths = []
+
+    for i in range(0, len(dups)):
+        names.append(dups['Name'].iloc[i])
+        paths.append(dups['path'].iloc[i])
+
+    s = zip(names, paths)
+    d = defaultdict(list)
+    for k, v in s:
+        d[k].append(v)
+
+    # restructure into new df (pairs) containing only pairs of duplicate paths
+    df_names = []
+    path_collection = []
+    path_list = []
+
+    for k, v in d.items():
+        if len(v) == occur:
+            df_names.append(k)
+            for path in v:
+                path_list.append(path)
+            path_collection.append(path_list)
+            path_list = []
+
+    col_list = []
+    col = []
+    for i in range(occur):
+        for j in range(len(path_collection)):
+            col.append(path_collection[j][i])
+        col_list.append(col)
+        col = []
+
+    path_data = {'name': df_names}
+    inc = 1
+    for i in range(occur):
+        col_name = 'path' + str(inc)
+        path_data[col_name] = col_list[i]
+        inc += 1
+
+    paths = pd.DataFrame(data=path_data)
+    paths = paths.sort_values(['name'])
+
+    return paths

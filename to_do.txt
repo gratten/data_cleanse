@@ -1,0 +1,15 @@
+generate_paths function
+> get it working with x4, x5, x6 etc paths
+
+generate_output function
+> get it working with x4, x5, x6 etc paths
+
+imporve chunk
+> currently does not sort largest occurences to smallest occurences properly
+
+format output spreadsheet
+> easier to read, auto column widths, etc
+
+generate master offender list
+> stack up filename-path mates from all generated path data frames, not just x2 and x3 that have been created seperately so far
+> determine every single pair, put them in a list, and sort by most occuring
