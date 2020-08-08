@@ -1,0 +1,11 @@
+# ignore all png files
+*.png
+
+# ignore all txt files
+*.txt
+
+# ignore all powerpoint files
+*.pptx
+
+# ignore directory
+/datasets/initial_data/
