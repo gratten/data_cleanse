@@ -13,3 +13,8 @@ format output spreadsheet
 generate master offender list
 > stack up filename-path mates from all generated path data frames, not just x2 and x3 that have been created seperately so far
 > determine every single pair, put them in a list, and sort by most occuring
+
+top_offender
+> currently have partner path graph generated at first level, for x top offending directories
+> currently have partner path graph generated for one single directory pair at second level
+> create graph at second level for x directory pairs
